@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <script src="https://unpkg.com/react@18/umd/react.development.js"></script>
+    <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+  </head>
+  <body>
+    <div id="test"></div>
+  </body>
+  <script type="text/babel">
+    class Life extends React.Component {
+      death = ()=>{
+        // ReactDOM.unmountComponentAtNode(document.getElementById('test'))
+        root.unmount()
+      }
+      render () {
+        return (
+          <div>
+            <h2>学不会React怎么办？</h2>
+            <button onClick={this.death}>不活了</button>
+          </div>
+          )
+      }
+    }
+
+    const root = ReactDOM.createRoot(document.getElementById('test'))
+    root.render(<Life/>)
+  </script>
+</html>

@@ -1,4 +1,4 @@
-<template lang="">
+<template>
     
     <div>
         <h2>name: {{ car.name }} - color: {{ car.color }} - price: {{ car.price }}</h2>
@@ -18,6 +18,6 @@ function changePrice() {
     car.price += 20;
 }
 </script>
-<style lang="">
+<style>
     
 </style>

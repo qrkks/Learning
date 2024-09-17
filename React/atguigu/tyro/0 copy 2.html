@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <script src="https://unpkg.com/react@18/umd/react.development.js"></script>
+    <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+  </head>
+  <body>
+    <div id="test"></div>
+  </body>
+  <script type="text/babel">
+    class Demo extends React.Component {
+      constructor (props) {
+        super(props)
+        this.state = {isHot:true}
+        this.changeWeather = this.changeWeather.bind(this)
+      }
+
+      render () {
+        const {isHot} = this.state
+        console.log(this)
+        return <div>
+          <h2>我是用类定义的组件（适用于【复杂组件】的定义）</h2>
+          <h3 onClick={this.changeWeather}>今天天气很{isHot ? '炎热' : '凉爽'}</h3>
+          </div>
+      }
+      changeWeather () {
+        console.log('点击了')
+        const isHot = this.state.isHot
+        this.setState({isHot:!isHot})
+      }
+    }
+    // ReactDOM.render(<Demo/>,document.getElementById('test'))
+    const root = ReactDOM.createRoot(document.getElementById('test'))
+    root.render(<Demo/>)
+  </script>
+</html>
