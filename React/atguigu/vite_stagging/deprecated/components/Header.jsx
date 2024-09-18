@@ -5,8 +5,11 @@ export default class Header extends Component {
     const {createTodos} = this.props;
     const {keyCode, target} = event;
     if (keyCode !== 13) return;
-    const name = target.value;
+    const name = target.value.trim()
+    if (name.trim() === "") return;
     createTodos(name);
+    // 如何在创建后清除输入框的值？？
+    target.value = "";
   };
 
   render() {

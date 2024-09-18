@@ -1,16 +1,10 @@
-import {Component} from "react";
-import Item from "./Item";
+import React, {useState} from "react";
 
-export default class List extends Component {
-  render() {
-    // const todos = this.props.todos
-    const {todos, updateTodos} = this.props;
-    return (
-      <ul>
-        {todos.map((todo) => {
-          return <Item key={todo.id} {...todo} updateTodos={updateTodos} />;
-        })}
-      </ul>
-    );
-  }
+function List() {
+  const [count, setCount] = useState(0);
+  return <div>
+    <button onClick={()=>setCount(count+1)}>{count}</button>
+  </div>;
 }
+
+export default List;
