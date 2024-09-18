@@ -10,6 +10,7 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "@material-tailwind/react": "^2.1.10",
     "mobx": "^6.13.2",
     "mobx-react-lite": "^4.0.7",
     "react": "^18.3.1",

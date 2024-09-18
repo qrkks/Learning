@@ -1,21 +1,22 @@
-import React, {Component} from "react";
-
-export default class Search extends Component {
-  search = () => {
-    console.log(this.keyWordElement.value);
-  };
-  render() {
-    return (
-      <div>
-        <input
-          ref={(c) => (this.keyWordElement = c)}
-          type="text"
-          name=""
-          id=""
-          placeholder="输入关键词点击搜索"
-        />
-        <button onClick={this.search}>搜索</button>
-      </div>
-    );
+import {Button, Input} from "@material-tailwind/react";
+import {useRef} from 'react';
+function Search() {
+  const keyWordElement = useRef(null)
+  const search = (e) => {
+    console.log(e)
   }
+  return (
+    <div className="flex ">
+      <Input
+        ref={keyWordElement}
+        type="text"
+        placeholder="输入关键词点击搜索"
+      ></Input>
+      <Button className="w-full" onClick={search}>
+        搜索
+      </Button>
+    </div>
+  );
 }
+
+export default Search;
