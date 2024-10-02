@@ -8,7 +8,7 @@ import {
 
 function Post({author, body}) {
   return (
-    <div className="w-1/2 ">
+    <div className="z-0 w-1/2">
       <Card className="w-full ">
         <CardBody>
           <Typography variant="h5" color="blue-gray" className="mb-2">

@@ -40,7 +40,6 @@ INSTALLED_APPS = [
     'ninja',
     'corsheaders',
 
-    'employee',
 ]
 
 MIDDLEWARE = [

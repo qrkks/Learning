@@ -1,45 +1,20 @@
+from datetime import datetime
 from ninja import NinjaAPI, Schema
-from employee.api import router as employee_router
+from pydantic import BaseModel
 
 api = NinjaAPI()
-
-api.add_router("/employee", employee_router)
-
-
-@api.get("/hello/{name}")  # GET /hello/{name}
-def hello_name(request, name: str):
-    return {"message": f"Hello {name}"}
+# 定义一个Pydantic模型用于返回值的类型注解
 
 
-@api.get("/add")
-def add(request, a: int, b: int):
-    return {"result": a + b}
-
-
-class HelloSchema(Schema):
-    name: str = "world from schema"
-
-
-@api.get("/hello")  # GET /hello
-def get_hello(request):
-    return {'message': 'Hello World from GET'}
-
-@api.post("/hello")
-def post_hello(request, data: HelloSchema):
-    return f"Hello {data.name} from POST"
-
-
-class UserSchema(Schema):
-    username: str
-    email: str
-    first_name: str
-    last_name: str
-
-class Error(Schema):
+class HelloWorldResponse(BaseModel):
     message: str
+    time: str  # 当前时间的格式是字符串
 
-@api.get("/me", response={200: UserSchema, 403: Error})
-def me(request):
-    if not request.user.is_authenticated:
-        return 403, {"message": "Please sign in first"}
-    return request.user 
+
+@api.get("/hello", response=HelloWorldResponse)
+def hello_world(request):
+    current_time = datetime.now().strftime("%Y-%m-%d %H:%M:%S")  # 获取当前时间并格式化
+    return {
+        'message': 'Hello World from Django Ninja\'s GET',
+        'time': current_time
+    }

@@ -1,20 +1,22 @@
 {
   "name": "frontend",
+  "version": "0.1.0",
   "private": true,
-  "version": "0.0.0",
-  "type": "module",
   "scripts": {
-    "dev": "vite",
-    "build": "vite build",
-    "preview": "vite preview"
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "next lint"
   },
   "dependencies": {
-    "axios": "^1.7.7",
-    "vue": "^3.4.37",
-    "vue-router": "^4.4.3"
+    "react": "^18",
+    "react-dom": "^18",
+    "next": "14.2.14"
   },
   "devDependencies": {
-    "@vitejs/plugin-vue": "^5.1.2",
-    "vite": "^5.4.1"
+    "postcss": "^8",
+    "tailwindcss": "^3.4.1",
+    "eslint": "^8",
+    "eslint-config-next": "14.2.14"
   }
 }
