@@ -1,21 +1,24 @@
-export default async function HomePage() {
-  try {
-    // 使用绝对路径调用 API
-    const res = await fetch("http://localhost:8000/api/hello");
-    const data = await res.json();
-
-    // 返回页面内容
-    return (
-      <>
-        <div>{data.message}</div>
-        <div>{data.time}</div>;
-      </>
-    );
-  } catch (error) {
-    console.error("Error fetching data:", error);
-    return <div>Error: {error.message}</div>;
+'use client'
+export default  function HomePage() {
+  function handleSubmit(e) {
+    e.preventDefault();
+    const data = new FormData(e.target);
+    console.log(Object.fromEntries(data.entries()));
   }
+  return (
+    <div>
+      <h1>HomePage</h1>
+      <form action="" className="flex flex-col items-center" onSubmit={handleSubmit}>
+        <div>
+          <label >email</label>
+          <input type="email" className="border" name="email"/>
+        </div>
+        <div>
+          <label >feedback</label>
+          <textarea className="border"  id="" cols="30" rows="10" name="feedback"></textarea>
+        </div>
+        <button>send feedback</button>
+      </form>
+    </div>
+  );
 }
-
-// 配置 ISR 的 revalidate，单位是秒
-export const revalidate = 100;

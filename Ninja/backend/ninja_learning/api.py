@@ -1,20 +1,36 @@
 from datetime import datetime
-from ninja import NinjaAPI, Schema
-from pydantic import BaseModel
+from ninja import Schema
 
-api = NinjaAPI()
-# 定义一个Pydantic模型用于返回值的类型注解
+from ninja_jwt.authentication import JWTAuth
+from ninja_jwt.controller import NinjaJWTDefaultController
+from ninja_extra import NinjaExtraAPI
 
+api = NinjaExtraAPI()
+api.register_controllers(NinjaJWTDefaultController)
+api.add_router("/waitlist", "waitlists.api.router")
 
-class HelloWorldResponse(BaseModel):
-    message: str
-    time: str  # 当前时间的格式是字符串
-
-
-@api.get("/hello", response=HelloWorldResponse)
+@api.get("/hello")
 def hello_world(request):
     current_time = datetime.now().strftime("%Y-%m-%d %H:%M:%S")  # 获取当前时间并格式化
+    print(request)
     return {
         'message': 'Hello World from Django Ninja\'s GET',
         'time': current_time
     }
+
+
+class UserSchema(Schema):
+    username: str
+    is_authenticated: bool
+    email: str = None
+    first_name: str = None
+    last_name: str = None
+    is_staff: bool = None
+    password: str = None
+    is_active: bool = None
+    last_login: datetime = None
+
+
+@api.get('/me', response=UserSchema, auth=JWTAuth())
+def me(request):
+    return request.user

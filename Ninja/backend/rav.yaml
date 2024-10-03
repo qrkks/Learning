@@ -1,0 +1,18 @@
+scripts:
+  dev:
+    - python manage.py runserver
+  make:
+    - python manage.py makemigrations
+  mig:
+    - python manage.py migrate
+  m:
+    - python manage.py makemigrations
+    - python manage.py migrate
+  shell:
+    - python manage.py shell
+  test:
+    - python manage.py test
+  curl_auth: |
+    curl -X POST -H "Content-Type: application/json" -d "{\"username\": \"qrkks\", \"password\": \"111\"}" http://localhost:8000/api/token/pair
+  curl_protect: |
+    curl -X GET -H "Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzI3ODQwMDY4LCJpYXQiOjE3Mjc4Mzk3NjgsImp0aSI6ImY0Y2NlZTU1ZjBkNTQ4ZDM5OWFhNGQ2MWQ2ODdmN2NmIiwidXNlcl9pZCI6MX0.UbSJUQKbfpWSgrLSYFdFJIFycooxDeBubv-TLoJwL44" http://localhost:8000/api/me
