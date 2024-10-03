@@ -12,7 +12,8 @@ const Login = () => {
             headers: { 'Content-Type': 'application/json' },
             body: jsonData
         }
-        const response = await fetch('http://127.0.0.1:8000/api/token/pair', requestOptions)
+        const response = await fetch('api/login', requestOptions)
+        // const response = await fetch('http://127.0.0.1:8000/api/token/pair', requestOptions)
         if (response.ok) {
             const rData = await response.json();
             console.log(rData);
