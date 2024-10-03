@@ -17,8 +17,9 @@ const Login = () => {
         if (response.ok) {
             const rData = await response.json();
             console.log(rData);
+        }else{
+            console.log(response);
         }
-        localStorage.setItem('token', 'abc');
     }
   return (
     <div className="h-[95vh]">

@@ -1,3 +1,4 @@
+import {setRefreshToken, setToken} from "@/app/lib/auth";
 import {cookies} from "next/headers";
 
 export async function POST(request) {
@@ -12,7 +13,7 @@ export async function POST(request) {
       username: username,
       password: password,
     }),
-  })
+  });
 
   if (!response.ok) {
     return new Response(JSON.stringify({message: "error"}), {
@@ -22,14 +23,9 @@ export async function POST(request) {
 
   const data = await response.json();
   console.log(data);
-  
-  // 使用 cookies().set 设置 Cookie
-  cookies().set("token", "abc", {
-    httpOnly: true,
-    sameSite: "strict",
-    path: "/",
-    maxAge: 60 * 60 * 24, // 1 天
-  });
+  const {access, refresh} = data;
+  setToken(access);
+  setRefreshToken(refresh);
   
   return new Response(
     JSON.stringify({message: "success", cookies: cookies().getAll()}),
