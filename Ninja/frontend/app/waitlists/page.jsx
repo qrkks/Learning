@@ -2,20 +2,20 @@
 
 import React from "react";
 import useSWR from "swr";
+// import { cookies } from "next/headers";
 
-// const waitlistApi = "http://localhost:8000/api/waitlist/";
-const waitlistApi = "/api/waitlist/";
+const waitlistApi = "http://localhost:8000/api/waitlists/";
+// const waitlistApi = "/api/waitlists";
 
 const Waitlist = () => {
+  // console.log(cookies())
   const fetcher = async (url) => {
-    // const token = cookies().get("auth-token"); // 或者使用 localStorage.getItem('access_token')
-
+    
     const res = await fetch(url, {
       method: "GET",
       credentials: "include", // 允许发送包含 Cookies 的请求
       headers: {
         "Content-Type": "application/json",
-        // "Authorization": `Bearer ${token}`,
       },
     });
     if (!res.ok) {
