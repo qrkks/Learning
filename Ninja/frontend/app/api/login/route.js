@@ -16,7 +16,8 @@ export async function POST(request) {
   });
 
   if (!response.ok) {
-    return new Response(JSON.stringify({message: "error"}), {
+    console.log({message: "error", loggedIn: false});
+    return new Response(JSON.stringify({message: "error", loggedIn: false}), {
       status: 401,
     });
   }
@@ -26,9 +27,13 @@ export async function POST(request) {
   const {access, refresh} = data;
   setToken(access);
   setRefreshToken(refresh);
-  
+
   return new Response(
-    JSON.stringify({message: "success", cookies: cookies().getAll()}),
+    JSON.stringify({
+      message: "success",
+      cookies: cookies().getAll(),
+      loggedIn: true,
+    }),
     {
       status: 200,
     }

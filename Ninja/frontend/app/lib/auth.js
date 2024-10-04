@@ -29,9 +29,8 @@ export function setToken(token) {
   const myCookies = cookies();
   myCookies.set("auth-token", token, {
     httpOnly: true,
-    sameSite: "strict",
-    path: "/",
     maxAge: 60 * 60 * 24, // 1 天
+    path: "/",
   });
 }
 

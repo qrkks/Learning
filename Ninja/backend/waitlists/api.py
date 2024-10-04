@@ -2,11 +2,12 @@ from ninja import Router
 from .models import WaitlistEntry
 from .schemas import WaitlistEntryListSchema, WaitlistEntryDetailSchema, WaitlistEntryCreateSchema
 from django.shortcuts import get_object_or_404
+from ninja_jwt.authentication import JWTAuth
 
 router = Router()
 
 
-@router.get("/", response=list[WaitlistEntryListSchema])
+@router.get("/", response=list[WaitlistEntryListSchema], auth=JWTAuth())
 def get_waitlist(request):
     return WaitlistEntry.objects.all()
 

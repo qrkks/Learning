@@ -1,14 +1,16 @@
 'use client'
 import React from "react";
+import {useRouter} from "next/navigation";
 
 const Logout = () => {
+  const router = useRouter();
   async function handleClick() {
     const response = await fetch("/api/logout", {
       method: "POST",
     });
     if (response.ok) {
       console.log("logged out");
-    }
+      router.push("/login");}
   }
   return (
     <div>
