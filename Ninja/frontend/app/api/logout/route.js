@@ -1,4 +1,4 @@
-import { removeToken } from "@/app/lib/auth";
+import { removeToken } from "@/lib/auth";
 
 export async function POST(request) {
     const response = removeToken();

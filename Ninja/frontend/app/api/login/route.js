@@ -1,4 +1,4 @@
-import {setRefreshToken, setToken} from "@/app/lib/auth";
+import {setRefreshToken, setToken} from "@/lib/auth";
 import {cookies} from "next/headers";
 
 export async function POST(request) {
@@ -33,6 +33,7 @@ export async function POST(request) {
       message: "success",
       cookies: cookies().getAll(),
       loggedIn: true,
+      ...data,
     }),
     {
       status: 200,

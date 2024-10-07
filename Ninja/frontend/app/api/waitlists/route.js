@@ -1,5 +1,5 @@
 import React from "react";
-import {getToken} from "@/app/lib/auth";
+import {getToken} from "@/lib/auth";
 
 export async function GET() {
   const authToken = getToken();

@@ -6,4 +6,4 @@ from .models import WaitlistEntry
 
 @admin.register(WaitlistEntry)
 class WaitlistEntryAdmin(admin.ModelAdmin):
-    list_display = ('id', 'email', 'timestamp')
+    list_display = ('id', 'user', 'email', 'timestamp', )

@@ -1,14 +1,18 @@
 'use client'
 import React from "react";
 import {useRouter} from "next/navigation";
+import { authStore } from "@/store/authStore";
 
 const Logout = () => {
+
   const router = useRouter();
   async function handleClick() {
     const response = await fetch("/api/logout", {
       method: "POST",
     });
     if (response.ok) {
+      localStorage.clear();
+      authStore.setIsAuthenticated(false);
       console.log("logged out");
       router.push("/login");}
   }

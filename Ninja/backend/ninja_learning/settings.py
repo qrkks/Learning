@@ -10,6 +10,7 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/5.1/ref/settings/
 """
 
+from corsheaders.defaults import default_headers
 from datetime import timedelta
 from pathlib import Path
 
@@ -62,15 +63,27 @@ MIDDLEWARE = [
 # CORS
 CORS_ALLOW_ALL_ORIGINS = True
 # # settings.py
-# CORS_ALLOW_CREDENTIALS = True
+# CORS_ALLOW_CREDENTIALS = True  # 允许发送凭证（如 Cookies）
 # CORS_ALLOWED_ORIGINS = [
 #     "http://localhost:3000",  # 允许的前端域
 #     "http://127.0.0.1:3000",
 # ]
-
-# # 如果需要允许自定义 headers，比如 Authorization
-# CORS_ALLOW_HEADERS = ['Authorization', 'Content-Type']
-
+# CORS_ALLOW_HEADERS = [
+#     'Content-Type',
+#     'Authorization',
+#     'X-Requested-With',
+#     'X-CSRF-Token',  # 注意: CSRF 头用于防护跨站请求伪造
+# ]
+# CORS_ALLOW_METHODS = (
+#     "DELETE",
+#     "GET",
+#     "OPTIONS",
+#     "PATCH",
+#     "POST",
+#     "PUT",
+# )
+# SESSION_COOKIE_SAMESITE = "Lax"
+# SESSION_COOKIE_SECURE = False
 
 
 ROOT_URLCONF = 'ninja_learning.urls'

@@ -33,7 +33,7 @@ class UserSchema(Schema):
     last_login: datetime = None
 
 
-@api.get('/me', response=UserSchema, auth=CookieJWTAuth())
+@api.get('/me', response=UserSchema, auth=JWTAuth())
 def me(request):
     return request.user
 
