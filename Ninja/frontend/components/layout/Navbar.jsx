@@ -27,6 +27,10 @@ const links = [
     title: "Waitlist",
     href: "/waitlists",
   },
+  {
+    title: "Count",
+    href: "/add",
+  },
 ];
 
 function Navbar() {
