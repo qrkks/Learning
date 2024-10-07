@@ -22,14 +22,14 @@ function WaitlistForm(props) {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
-        Authorization: `Bearer ${localStorage.getItem("token")}`,
+        Authorization: `Bearer ${props.token}`,
       },
       body: JSON.stringify(data),
     })
       .then((res) => {
         if (!res.ok) {
           throw new Error("Network response was not ok");
-          setMessage("Please provide a valid email address");
+          setMessage("Network response was not ok");
         }
         return res.json();
       })

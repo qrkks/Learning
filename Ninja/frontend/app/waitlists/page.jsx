@@ -9,7 +9,6 @@ import {TableDemo} from "./table";
 
 const WaitLists = observer(() => {
   const [token, setToken] = useState(null);
-  const [waitlistData, setWaitlistData] = useState([]);
   const router = useRouter();
   const pathname = usePathname();
 
@@ -32,13 +31,12 @@ const WaitLists = observer(() => {
       },
     }).then((res) => res.json());
 
-  // 引入 fallbackData 和 isValidating 优化
-  const { data, error, isLoading, isValidating, mutate } = useSWR(
+  // 使用 data 来直接渲染
+  const {data, error, isLoading, isValidating, mutate} = useSWR(
     token ? "http://127.0.0.1:8000/api/waitlists" : null,
     fetcher,
     {
-      onSuccess: (data) => setWaitlistData(data),
-      fallbackData: waitlistData, // 这里使用缓存数据
+      onSuccess: (data) => console.log("Data fetched:", data),
     }
   );
 
@@ -52,9 +50,29 @@ const WaitLists = observer(() => {
     }
   }, [error, router]);
 
-  const handleFormSubmit = (newEntry) => {
-    setWaitlistData((prevData) => [newEntry, ...prevData]);
-    mutate(); // mutate 用来触发重新获取数据
+  const handleFormSubmit = async (newEntry) => {
+    try {
+      const response = await fetch("http://127.0.0.1:8000/api/waitlists", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${token}`,
+        },
+        body: JSON.stringify(newEntry),
+      });
+
+      if (!response.ok) {
+        throw new Error("Failed to create new waitlist entry");
+      }
+
+      // 后端返回的新记录，包含 id 等其他信息
+      const createdEntry = await response.json();
+
+      // 使用 mutate 更新 SWR 缓存，将后端返回的新条目添加到数据中
+      mutate([createdEntry, ...(data || [])], false); // false 表示不重新请求数据
+    } catch (error) {
+      console.error("Failed to submit form:", error);
+    }
   };
 
   if (error) return <div>Failed to load</div>;
@@ -62,12 +80,10 @@ const WaitLists = observer(() => {
 
   return (
     <>
-      <WaitlistForm onSubmit={handleFormSubmit} />
-      <TableDemo data={data || waitlistData} />
+      <WaitlistForm onSubmit={handleFormSubmit} token={token} />
+      <TableDemo data={data || []} />
     </>
   );
 });
-
-
 
 export default WaitLists;
