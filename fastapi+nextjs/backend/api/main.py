@@ -1,9 +1,7 @@
 from fastapi import FastAPI
 from tortoise.contrib.fastapi import register_tortoise
-from fastapi_admin.app import app as admin_app
 
 app = FastAPI()
-app.mount("/admin", admin_app)
 
 
 # 使用 register_tortoise 初始化数据库
