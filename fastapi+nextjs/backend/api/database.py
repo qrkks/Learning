@@ -4,8 +4,9 @@ TORTOISE_ORM = {
     },
     "apps": {
         "models": {
-            "models": ["models", "aerich.models"],  # 模型路径
+            "models": ["api.models", "aerich.models"],  # 模型路径
             "default_connection": "default",
         }
     }
 }
+

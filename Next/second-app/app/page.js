@@ -1,24 +1,29 @@
-'use client'
-export default  function HomePage() {
+"use client";
+import {useState} from "react";
+import { Button } from "@material-tailwind/react";
+
+export default function HomePage() {
+  const [list, setList] = useState([]);
   function handleSubmit(e) {
     e.preventDefault();
-    const data = new FormData(e.target);
-    console.log(Object.fromEntries(data.entries()));
+    const formData = new FormData(e.target);
+    const item = formData.get("item");
+    setList([item, ...list]);
+    e.target.reset();
+    e.target[0].focus();
   }
   return (
     <div>
-      <h1>HomePage</h1>
-      <form action="" className="flex flex-col items-center" onSubmit={handleSubmit}>
-        <div>
-          <label >email</label>
-          <input type="email" className="border" name="email"/>
-        </div>
-        <div>
-          <label >feedback</label>
-          <textarea className="border"  id="" cols="30" rows="10" name="feedback"></textarea>
-        </div>
-        <button>send feedback</button>
+      <h1 className="text-red-500">Hello world</h1>
+      <form action="" onSubmit={handleSubmit}>
+        <input type="text" placeholder="Enter item" name="item" />
+        <Button color="primary" type="submit">Submit</Button>
       </form>
+      <ul>
+        {list.map((item,idx) => (
+          <li key={idx}>{item}</li>
+        ))}
+      </ul>
     </div>
   );
 }
