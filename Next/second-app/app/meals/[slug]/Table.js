@@ -14,7 +14,7 @@ import {
 const TABLE_HEAD = ["Key", "Value"];
 
 export default function DefaultTable(props) {
-  console.log(props);
+  // console.log(props);
   return (
     <>
       <TableContainer>
@@ -28,7 +28,7 @@ export default function DefaultTable(props) {
           </Thead> */}
           <Tbody>
             {Object.entries(props).map(([key, value]) => (
-              <Tr>
+              <Tr key={key}>
                 <Td>{key}</Td>
                 <Td>{value}</Td>
               </Tr>

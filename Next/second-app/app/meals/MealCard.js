@@ -24,7 +24,7 @@ export default function CardDefault(props) {
         <Typography variant="small" color="gray" className="mt-1">{new Date(props.created_at).toLocaleString()}</Typography>
       </CardBody>
       <CardFooter className="pt-0">
-        <Button onClick={() => router.push(`/meals/${props.id}`)}>
+        <Button onClick={() => router.push(`/meals/${props.slug}`)}>
           Read More
         </Button>
       </CardFooter>
