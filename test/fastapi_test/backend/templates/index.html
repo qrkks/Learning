@@ -7,9 +7,11 @@
   </head>
   <body>
     Hello World
+    <p>
     {% if name %}
-     from {{ name|upper }}
+      Hello {{ name|upper }}
     {% endif %}
+    </p>
     <p>
       {{ dict(request) }}
     </p>
