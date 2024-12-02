@@ -1,6 +1,6 @@
-def main():
-    print("Hello from learning!")
+import log_config
 
+logger = log_config.get_logger(__name__)
 
-if __name__ == "__main__":
-    main()
+logger.info('hello')
+logger.warning('world')
