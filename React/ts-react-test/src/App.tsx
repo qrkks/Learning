@@ -3,12 +3,13 @@ import {BrowserRouter, Routes, Route, NavLink} from "react-router-dom";
 import "./App.css";
 const Home = lazy(() => import("./Home"));
 const Form1 = lazy(() => import("./Form1"));
+const Form2 = lazy(() => import("./Form2"));
 
 function App(): React.ReactElement {
   return (
     <BrowserRouter>
-      <div className="container">
-        <nav>
+      <div className="container ">
+        <nav className="mb-3">
           <NavLink
             to="/"
             style={({isActive}) => ({color: isActive ? "pink" : "black"})}
@@ -30,12 +31,12 @@ function App(): React.ReactElement {
             2
           </NavLink>
         </nav>
-        <h1>ts react hook form</h1>
+        <h1>{'ts react hook form'.toUpperCase()}</h1>
         <Suspense fallback={<div>Loading...</div>}>
           <Routes>
             <Route path="/" element={<Home />} />
             <Route path="/1" element={<Form1 />} />
-            <Route path="/2" element={<div>2</div>} />
+            <Route path="/2" element={<Form2 />} />
           </Routes>
         </Suspense>
       </div>

@@ -1,4 +1,4 @@
-import React, {useState} from "react";
+import React, { useState } from "react";
 
 type FoodDeliveryFormType = {
   customerName: string;
@@ -16,20 +16,38 @@ function Form1(): React.JSX.Element {
   });
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const {name, value} = e.target;
-    setValues({
-      ...values,
-      [name]: value,
-    });
-    // console.log(e.target)
+    const { name, value } = e.target;
+    setValues((prevValues) => ({
+      ...prevValues,
+      [name]: value
+    }));
+
+    // 用户输入时清除错误
+    setErrors((prevErrors) => ({
+      ...prevErrors,
+      [name]: "",
+    }));
   };
-  // useEffect(() => {
-  //   console.log("Updated values:", values); // ✅ 这里会打印最新的 `values`
-  // }, [values]);
+
+  const validateFormData = () => {
+    const newErrors: FoodDeliveryFormType = {
+      customerName: "",
+      mobile: "",
+    };
+
+    if (!values.customerName) {
+      newErrors.customerName = "Customer Name is required";
+    }
+    if (!values.mobile) {
+      newErrors.mobile = "Mobile is required";
+    }
+
+    setErrors(newErrors); // ✅ 正确更新 state
+    return Object.values(newErrors).every((err) => err === "");
+  };
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    // console.log(values);
     if (validateFormData()) {
       console.log("Valid form data", values);
     } else {
@@ -37,27 +55,12 @@ function Form1(): React.JSX.Element {
     }
   };
 
-  const validateFormData = () => {
-    // const errors = {
-    //   customerName: "",
-    //   mobile: "",
-    // };
-    if (!values.customerName) {
-      errors.customerName = "Customer Name is required";
-    }
-    if (!values.mobile) {
-      errors.mobile = "Mobile is required";
-    }
-    setErrors(errors); // 更新 errors;
-    return Object.values(errors).every((err) => err === "");
-  };
-
   return (
     <div>
       <h2>Form1</h2>
+      <p>使用react常规方法建立表单</p>
       <form action="" onSubmit={handleSubmit}>
         <div className="mb-3">
-          {/* <label className="form-label">Customer Name</label> */}
           <input
             type="text"
             className="form-control"
@@ -66,9 +69,9 @@ function Form1(): React.JSX.Element {
             onChange={handleInputChange}
             name="customerName"
           />
+          {errors.customerName && <p style={{ color: "red" }}>{errors.customerName}</p>}
         </div>
         <div className="mb-3">
-          {/* <label className="form-label">Customer Name</label> */}
           <input
             type="text"
             className="form-control"
@@ -77,6 +80,7 @@ function Form1(): React.JSX.Element {
             name="mobile"
             onChange={handleInputChange}
           />
+          {errors.mobile && <p style={{ color: "red" }}>{errors.mobile}</p>}
         </div>
         <button className="btn btn-primary">Submit</button>
       </form>
