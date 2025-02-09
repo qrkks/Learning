@@ -31,8 +31,8 @@ class UserCreate(BaseModel):
 
 @app.post("/users")
 async def create_user(user: UserCreate):
-    user = User(username=user.username, password=user.password)
-    await user.save()
+    user = User(username=user.username, password=user.password) # type: ignore
+    await user.save() # type: ignore
     return user
 
 
