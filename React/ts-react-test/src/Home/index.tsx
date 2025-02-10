@@ -2,7 +2,7 @@ import React from "react";
 function Home(): React.JSX.Element {
   return (
     <div>
-      <div className="mx-5">hello world</div>
+      <h2 className="mx-5">hello world</h2>
     </div>
   );
 }

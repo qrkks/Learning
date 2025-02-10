@@ -4,6 +4,8 @@ import "./App.css";
 const Home = lazy(() => import("./Home"));
 const Form1 = lazy(() => import("./Form1"));
 const Form2 = lazy(() => import("./Form2"));
+const Form3 = lazy(() => import("./Form3"));
+const Form4 = lazy(() => import("./Form4"));
 
 function App(): React.ReactElement {
   return (
@@ -29,6 +31,18 @@ function App(): React.ReactElement {
             style={({isActive}) => ({color: isActive ? "pink" : "black"})}
           >
             2
+          </NavLink> |{" "}
+          <NavLink
+            to="/3"
+            style={({isActive}) => ({color: isActive ? "pink" : "black"})}
+          >
+            3
+          </NavLink> |{" "}
+          <NavLink
+            to="/4"
+            style={({isActive}) => ({color: isActive ? "pink" : "black"})}
+          >
+            4
           </NavLink>
         </nav>
         <h1>{'ts react hook form'.toUpperCase()}</h1>
@@ -37,6 +51,8 @@ function App(): React.ReactElement {
             <Route path="/" element={<Home />} />
             <Route path="/1" element={<Form1 />} />
             <Route path="/2" element={<Form2 />} />
+            <Route path="/3" element={<Form3 />} />
+            <Route path="/4" element={<Form4 />} />
           </Routes>
         </Suspense>
       </div>

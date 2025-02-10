@@ -57,8 +57,7 @@ function Form1(): React.JSX.Element {
 
   return (
     <div>
-      <h2>Form1</h2>
-      <p>使用react常规方法建立表单</p>
+      <h2>使用react常规方法建立表单</h2>
       <form action="" onSubmit={handleSubmit}>
         <div className="mb-3">
           <input
