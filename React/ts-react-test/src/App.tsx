@@ -2,10 +2,11 @@ import React, {Suspense, lazy} from "react";
 import {BrowserRouter, Routes, Route, NavLink} from "react-router-dom";
 import "./App.css";
 const Home = lazy(() => import("./Home"));
-const Form1 = lazy(() => import("./Form1"));
-const Form2 = lazy(() => import("./Form2"));
-const Form3 = lazy(() => import("./Form3"));
-const Form4 = lazy(() => import("./Form4"));
+const Form1 = lazy(() => import("./Form/Form1"));
+const Form2 = lazy(() => import("./Form/Form2"));
+// import Form2 from "./Form/Form2";
+const Form3 = lazy(() => import("./Form/Form3"));
+const Form4 = lazy(() => import("./Form/Form4"));
 
 function App(): React.ReactElement {
   return (

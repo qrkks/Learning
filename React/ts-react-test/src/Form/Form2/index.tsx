@@ -5,7 +5,7 @@ type FoodDeliveryFormType = {
   customerName: string;
   mobile: string;
 };
-
+console.log('这个文件被执行了')
 function Form2(): React.JSX.Element {
   const {
     register,
