@@ -50,7 +50,7 @@ function Form4(): React.JSX.Element {
         >
           Submit
         </button>
-        {formState.isSubmitted && (
+        {formState.isSubmitSuccessful && (
           <div className="alert alert-success" role="alert">
             提交成功
           </div>

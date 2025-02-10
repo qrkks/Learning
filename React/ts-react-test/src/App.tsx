@@ -7,6 +7,7 @@ const Form2 = lazy(() => import("./Form/Form2"));
 // import Form2 from "./Form/Form2";
 const Form3 = lazy(() => import("./Form/Form3"));
 const Form4 = lazy(() => import("./Form/Form4"));
+const Form5 = lazy(() => import("./Form/Form5"));
 
 function App(): React.ReactElement {
   return (
@@ -44,6 +45,12 @@ function App(): React.ReactElement {
             style={({isActive}) => ({color: isActive ? "pink" : "black"})}
           >
             4
+          </NavLink> |{" "}
+          <NavLink
+            to="/5"
+            style={({isActive}) => ({color: isActive ? "pink" : "black"})}
+          >
+            5
           </NavLink>
         </nav>
         <h1>{'ts react hook form'.toUpperCase()}</h1>
@@ -54,6 +61,7 @@ function App(): React.ReactElement {
             <Route path="/2" element={<Form2 />} />
             <Route path="/3" element={<Form3 />} />
             <Route path="/4" element={<Form4 />} />
+            <Route path="/5" element={<Form5 />} />
           </Routes>
         </Suspense>
       </div>
